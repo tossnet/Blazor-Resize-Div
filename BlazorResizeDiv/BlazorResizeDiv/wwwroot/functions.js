@@ -13,15 +13,20 @@ function startMove(dotNetHelper, elementId) {
     });
 }
 
- function resize(e) {
+function resize(e) {
+    if (dotNet != null) {
     //if (currentResizer.classList.contains('bottom-right')) {
     element.style.width = e.pageX - element.getBoundingClientRect().left + 'px'
-    //}
+        //}
+    }
 }
 
  function stopResize() {
      window.removeEventListener('mousemove', resize);
+     window.removeEventListener('mouseup', stopResize)
+
      dotNet.invokeMethodAsync('ReturnSize', element.style.width);
 
      dotNet.dispose();
+     dotNet = null;
 }

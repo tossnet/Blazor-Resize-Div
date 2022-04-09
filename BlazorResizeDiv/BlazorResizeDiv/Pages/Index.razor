@@ -2,15 +2,23 @@
          
 @inject IJSRuntime JS
 
-1. problem : I have to click once before I can stretch the div
+<ol>
+    <li>Problem : I have to click once before I can stretch the div</li>  
+    <li>Convert JS to module</li>
+</ol>
 
-<div id="myDiv" class="myTask" @onmousedown="ondiv"></div>
-
+   
 @result
+
+<div id="myDiv" class="myTask" @onclick="onclick">
+    <div class="resizer @display"  @onmousedown="ondiv"></div>
+</div>        
+
 
 
 @code {
-	private string result ="";
+    private string result ="-";
+    private string display = "handle-hidden";
     private InvokeHelper? invokeHelper;
 
     protected override async Task OnInitializedAsync()
@@ -18,8 +26,13 @@
         invokeHelper = new InvokeHelper(NewSize);
     }
 
+    private void onclick()
+    {
+        display = "handle-visible";
+    }
     private async Task ondiv()
     {
+        //resizer = "resizer right";
         if (invokeHelper != null)
         {    
             await JS.InvokeVoidAsync("startMove",
@@ -29,6 +42,8 @@
 
     private void NewSize(string message)
     {
+        display = "handle-hidden";
+        //resizer = "display: none;";
         result = message;
         StateHasChanged();    
     }
