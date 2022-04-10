@@ -1,6 +1,6 @@
 ﻿using Microsoft.JSInterop;
 
-public class InvokeHelper
+public sealed class InvokeHelper
 {
     private Action<string> action;
 

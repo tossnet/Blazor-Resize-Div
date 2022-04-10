@@ -1,7 +1,7 @@
-﻿var element;
-var dotNet;
+﻿export var element;
+export var dotNet;
 
-function startMove(dotNetHelper, elementId) {
+export function startMove(dotNetHelper, elementId) {
 
     dotNet = dotNetHelper;
     element = document.getElementById(elementId);
@@ -15,7 +15,7 @@ function startMove(dotNetHelper, elementId) {
     //});
 }
 
-function resize(e) {
+export function resize(e) {
     if (dotNet != null) {
         //if (currentResizer.classList.contains('bottom-right')) {
         element.style.width = e.pageX - element.getBoundingClientRect().left + 'px'
@@ -23,12 +23,12 @@ function resize(e) {
     }
 }
 
-function stopResize() {
-    window.removeEventListener('mousemove', resize);
-    window.removeEventListener('mouseup', stopResize)
+export function stopResize() {
+     window.removeEventListener('mousemove', resize);
+     window.removeEventListener('mouseup', stopResize)
 
-    dotNet.invokeMethodAsync('ReturnSize', element.style.width);
+     dotNet.invokeMethodAsync('ReturnSize', element.style.width);
 
-    dotNet.dispose();
-    dotNet = null;
+     dotNet.dispose();
+     dotNet = null;
 }

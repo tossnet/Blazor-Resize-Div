@@ -1,6 +1,8 @@
-﻿@page "/"
+﻿@page "/page2"
          
 @inject IJSRuntime JS
+
+<h3>Use of js module</h3>
 
    
 @result
@@ -21,6 +23,14 @@
     private string display = "handle-hidden";
     private InvokeHelper? invokeHelper;
 
+    private JsInterop jsInterop { get; set; }
+    JsInterop GetJs()
+    {
+        if (jsInterop == null)
+            jsInterop = new JsInterop(JS);
+        return jsInterop;
+    }
+
     protected override async Task OnInitializedAsync()
     {
         invokeHelper = new InvokeHelper(NewSize);
@@ -30,8 +40,9 @@
     {
         if (invokeHelper != null)
         {    
-            await JS.InvokeVoidAsync("startMove",
-                    DotNetObjectReference.Create(invokeHelper),id);
+            await GetJs().StartMove( DotNetObjectReference.Create(invokeHelper), id);
+            //await JS.InvokeVoidAsync("startMove",
+            //        DotNetObjectReference.Create(invokeHelper),id);
         }
     }
 
