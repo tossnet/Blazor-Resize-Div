@@ -7,9 +7,7 @@
    
 @result
 
-<div id="myDiv1" class="myTask" @onmousedown="@(i => ondiv("myDiv1"))">
-
-</div>   
+<div id="myDiv1" class="myTask" @onmousedown="@(i => ondiv("myDiv1"))" />
 
 <br />
 
@@ -41,8 +39,6 @@
         if (invokeHelper != null)
         {    
             await GetJs().StartMove( DotNetObjectReference.Create(invokeHelper), id);
-            //await JS.InvokeVoidAsync("startMove",
-            //        DotNetObjectReference.Create(invokeHelper),id);
         }
     }
 
