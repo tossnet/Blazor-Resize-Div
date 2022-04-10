@@ -6,11 +6,13 @@ function startMove(dotNetHelper, elementId) {
     dotNet = dotNetHelper;
     element = document.getElementById(elementId);
 
-    element.addEventListener('mousedown', function (e) {
-        e.preventDefault()
-        window.addEventListener('mousemove', resize)
-        window.addEventListener('mouseup', stopResize)
-    });
+    window.addEventListener('mousemove', resize)
+    window.addEventListener('mouseup', stopResize)
+    //element.addEventListener('mousedown', function (e) {
+    //    e.preventDefault()
+    //    window.addEventListener('mousemove', resize)
+    //    window.addEventListener('mouseup', stopResize)
+    //});
 }
 
 function resize(e) {

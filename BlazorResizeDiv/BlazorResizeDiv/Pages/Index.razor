@@ -3,29 +3,26 @@
 @inject IJSRuntime JS
 
 <ol>
-    <li>Problem : I have to click once before I can stretch the div</li>  
-    <li>Problem : When more one div...</li>  
     <li>Convert JS to module</li>
 </ol>
 
    
 @result
 
-<div id="myDiv1" class="myTask" @onclick="@(i => onclick("myDiv1"))">
-    <div class="resizer @display" @onmousedown="ondiv"></div>
+<div id="myDiv1" class="myTask" @onmousedown="@(i => ondiv("myDiv1"))">
+
 </div>   
 
 <br />
 
-<div id="myDiv2" class="myTask" @onclick="@(i => onclick("myDiv2"))">
-    <div class="resizer @display" @onmousedown="ondiv"></div>
+<div id="myDiv2" class="myTask" @onmousedown="@(i => ondiv("myDiv2"))">
+    <div class="resizer @display"></div>
 </div>    
 
 
 @code {
     private string result ="-";
     private string display = "handle-hidden";
-    private string ID = "";
     private InvokeHelper? invokeHelper;
 
     protected override async Task OnInitializedAsync()
@@ -33,18 +30,12 @@
         invokeHelper = new InvokeHelper(NewSize);
     }
 
-    private void onclick(string id)
-    {
-        ID = id;
-        display = "handle-visible";
-    }
-
-    private async Task ondiv()
+    private async Task ondiv(string id)
     {
         if (invokeHelper != null)
         {    
             await JS.InvokeVoidAsync("startMove",
-                    DotNetObjectReference.Create(invokeHelper),ID);
+                    DotNetObjectReference.Create(invokeHelper),id);
         }
     }
 
@@ -52,7 +43,6 @@
     {
         display = "handle-hidden";
         result = message;
-        ID = "";
         StateHasChanged();    
     }
 }
