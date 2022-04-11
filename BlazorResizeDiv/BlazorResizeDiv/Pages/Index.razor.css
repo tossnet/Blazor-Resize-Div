@@ -1,7 +1,7 @@
 ﻿.resizer {
     width: 12px;
     height: 12px;
-    border-radius: 50%; /*magic to turn square into circle*/
+    border-radius: 50%;
     background: white;
     border: 3px solid #555555bd;
     position: absolute;
@@ -9,12 +9,6 @@
     top: calc(50/2+"px");
     cursor: col-resize;
 }
-
-    /*.resizer.right {
-        left: -5px;
-        top: -5px;
-        cursor: nwse-resize;*/ /*resizer cursor*/
-    /*}*/
 
 .myTask {
     width: 140px;
@@ -36,21 +30,10 @@
         color:#555555bd;
         border-right: 8px solid;
         cursor: w-resize;
-
-         /*width: 12px;
-        height: 12px;
-        border-radius: 50%;*/ /*magic to turn square into circle*/
-        /*background: white;
-        border: 3px solid #4286f4;
-        position: absolute;
-        right: -5px;
-        top: calc(50/2+"px");
-        cursor: col-resize;*/
     }
 
     .myTask:hover .resizer {
         display: block;
-       
     }
 
 .handle-visible {
