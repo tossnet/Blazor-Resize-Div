@@ -13,21 +13,12 @@ public sealed class JsInterop : IAsyncDisposable
             "import", "/js/resizediv.js").AsTask());
     }
 
-
-    //startMove(dotNetHelper, elementId)
     public async Task StartMove(object dotNetHelper, string elementId)
     {
         var module = await moduleTask.Value;
         await module.InvokeVoidAsync("startMove", dotNetHelper, elementId);
     }
 
-    public async ValueTask<string> Toto()
-    {
-        var module = await moduleTask.Value;
-        return await module.InvokeAsync<string>("toto");
-    }
-
-    
     public async ValueTask<string> StopResize()
     {
         var module = await moduleTask.Value;
